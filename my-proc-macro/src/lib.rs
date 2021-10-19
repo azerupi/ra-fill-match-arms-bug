@@ -7,16 +7,9 @@ use quote::quote;
 pub fn payload(_args: TokenStream, input: TokenStream) -> TokenStream {
     let item = parse_macro_input!(input as Item);
 
-    let result = match item {
-        Item::Impl(payload_impl) => {
-            let output = quote! {
-                #payload_impl
-            };
-        
-            output
-        },
-        _ => todo!(),
+    let output = quote! {
+        #item
     };
 
-    result.into()
+    output.into()
 }
